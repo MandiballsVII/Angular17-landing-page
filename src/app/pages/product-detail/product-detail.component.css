@@ -1,0 +1,85 @@
+
+/* === Centrado de la tarjeta en pantalla === */
+.container {
+  min-height: 100vh;          /* ocupa alto completo */
+  display: flex;
+  align-items: center;        /* centrado vertical */
+  justify-content: center;    /* centrado horizontal */
+  padding: 2rem;              /* algo de respiración en móvil */
+  /* Sin color de fondo: respetamos tu layout */
+}
+
+/* === Tarjeta con sombra sutil (luz a la izquierda) === */
+.product-card {
+  width: 100%;
+  max-width: 22rem;           /* controla el ancho sin inline styles */
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 0.75rem;
+  overflow: hidden;           /* asegura que radios afecten a imagen/contenido */
+  background-color: #fff;
+  /* Sombra principal: desplazada a la derecha/abajo → luz a la izquierda */
+  box-shadow:
+    14px 12px 28px rgba(0, 0, 0, 0.12),  /* sombra suave, principal */
+    2px 2px 6px rgba(0, 0, 0, 0.04);     /* sombra de contacto sutil */
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+/* Elevación muy sutil al hover, sin exagerar */
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    16px 14px 34px rgba(0, 0, 0, 0.14),
+    2px 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* === Imagen con “aire” respecto a los bordes === */
+.card-media {
+  padding: 0.75rem;           /* separa la imagen del borde de la card */
+  background: transparent;    /* no añadimos color de fondo */
+}
+
+/* Imagen: mantiene proporciones y redondeos propios */
+.card-img-top {
+  width: 100%;
+  height: 220px;              /* altura consistente entre cards */
+  object-fit: cover;          /* recorta sin deformar */
+  border-radius: 0.5rem;      /* esquinas redondeadas dentro del padding */
+  display: block;             /* evita espacios fantasma en inline elements */
+}
+
+/* === Tipografías y ritmo vertical agradable === */
+.product-card .card-body {
+  padding: 1rem 1.1rem 1.25rem;
+}
+
+.product-card h4 {
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+  color: #1f2937;             /* gris oscuro legible */
+}
+
+.product-card .card-title {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.product-card .card-text {
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+/* Botón con toque sutil (opcional) */
+.product-card .btn.btn-primary {
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.18);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.product-card .btn.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.26);
+}
