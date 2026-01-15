@@ -1,7 +1,7 @@
 
 /* === Centrado de la tarjeta en pantalla === */
 .container {
-  min-height: 100vh;          /* ocupa alto completo */
+  min-height: 10vh;          /* ocupa alto completo */
   display: flex;
   align-items: center;        /* centrado vertical */
   justify-content: center;    /* centrado horizontal */

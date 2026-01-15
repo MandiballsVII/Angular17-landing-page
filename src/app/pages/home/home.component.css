@@ -1,9 +1,150 @@
-.container{
-    display: grid;
-    justify-items: center;
+/* Alturas de navbar y footer (ajústalas a tu caso real) */
+:root {
+  --navbar-height: 64px;
+  --footer-height: 150px;
 }
-img{
-    width: 75%;
-    height: 75%;
-    object-fit: cover;
+
+/* El footer es fixed-bottom, por lo que hay que reservar su espacio */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Reserva espacio para que el footer fijo NO tape el contenido */
+body {
+  padding-bottom: var(--footer-height);
+}
+
+/* Estructura base del app */
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* La navbar forma parte del flujo normal; no es fixed */
+nav {
+  height: var(--navbar-height);
+  flex-shrink: 0;
+}
+
+/* El footer lo tienes fixed-bottom en el HTML, así que aquí no ponemos height;
+   el hueco lo estamos reservando con body { padding-bottom } */
+
+/* app-home ocupa el espacio restante bajo la navbar */
+app-home {
+  flex: 1;
+  display: flex; /* para poder centrar el contenido verticalmente si quieres */
+  align-items: stretch; /* importante: que estire a la altura disponible */
+}
+
+/* Sección con imagen de fondo que ocupa EXACTAMENTE el hueco entre navbar y footer */
+
+.background-image {
+  min-height: calc(100dvh - 40px - 166px);
+  width: 100%;
+  position: relative;
+  overflow: hidden; /* evita que el pseudo-elemento cree scroll */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/assets/image.jpg") center center / cover no-repeat;
+  transform: scale(1);
+  transition: transform 8s ease-in-out;
+  animation: heroZoom 8s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.background-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.05) 50%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+
+  z-index: 1;
+}
+
+/* El contenedor interior solo centra y tipografía; no fuerces height:100% aquí */
+.background-image > .container {
+  max-width: 1200px;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  /* No height: 100%; */
+}
+
+/* Estilos de texto sobre imagen */
+.background-image h1,
+.background-image h2 {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  margin: 0.25rem 0;
+}
+
+.background-image h1 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+}
+
+.background-image h2 {
+  font-size: clamp(1.1rem, 2.6vw, 2rem);
+  font-weight: 400;
+}
+
+/* (Opcional) Animación sutil */
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.5);
+
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  display: inline-block;
+
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  animation: fadeIn 1.5s ease forwards;
+}
+.hero-content h1,
+.hero-content h2 {
+  color: #ffffff; /* blanco puro */
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8); /* sombra más fuerte para contraste */
+  font-weight: 800; /* más grueso */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

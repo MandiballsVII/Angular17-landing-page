@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+  --footer-h: 150px; /* ajusta a la altura real de tu footer */
+}
+@supports (height: max(0px)) {
+  /* Opcional: añade safe-area en móviles con notch */
+  :root { --safe-bottom: env(safe-area-inset-bottom, 0px); }
+}
+
+body {
+  padding-bottom: calc(var(--footer-h) + var(--safe-bottom, 0px));
+}
+
